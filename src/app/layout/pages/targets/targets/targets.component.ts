@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-targets',
   standalone: true,
   templateUrl: './targets.component.html',
-  styleUrls: ['./targets.component.css']
+  styleUrls: ['./targets.component.scss']
 })
 export class TargetsComponent implements OnInit {
 

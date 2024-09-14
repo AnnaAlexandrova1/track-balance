@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-create-balance-wheel',
   standalone: true,
   templateUrl: './create-balance-wheel.component.html',
-  styleUrls: ['./create-balance-wheel.component.css']
+  styleUrls: ['./create-balance-wheel.component.scss']
 })
 export class CreateBalanceWheelComponent implements OnInit {
 

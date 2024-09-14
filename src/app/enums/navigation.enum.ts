@@ -1,4 +1,4 @@
-export enum NavigationPath {
+export enum ENavigationPath {
     APP='app',
     MAIN_PAGE = 'main-page',
     CREATE_BALANCE_WHEEL = 'create-balance-wheel',

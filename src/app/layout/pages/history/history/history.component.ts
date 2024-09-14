@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-history',
   standalone: true,
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
 

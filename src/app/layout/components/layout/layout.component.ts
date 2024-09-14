@@ -3,24 +3,24 @@ import { MenuItem } from 'primeng/api';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-import { NavigationPath } from '../../../enums/navigation.enum';
+import { ENavigationPath } from '../../../enums/navigation.enum';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css'],
+  styleUrls: ['./layout.component.scss'],
   imports: [TabMenuModule, AvatarModule, AvatarGroupModule],
 })
 export class LayoutComponent implements OnInit {
   public menuItems: MenuItem[] = [
-    { label: 'Главная', routerLink: NavigationPath.MAIN_PAGE,},
+    { label: 'Главная', routerLink: ENavigationPath.MAIN_PAGE,},
     {
       label: 'Создать колесо баланса',
-      routerLink: NavigationPath.CREATE_BALANCE_WHEEL,
+      routerLink: ENavigationPath.CREATE_BALANCE_WHEEL,
     },
-    { label: 'Цели', routerLink: NavigationPath.TARGETS },
-    { label: 'История', routerLink: NavigationPath.HISTORY },
+    { label: 'Цели', routerLink: ENavigationPath.TARGETS },
+    { label: 'История', routerLink: ENavigationPath.HISTORY },
   ];
 
   
