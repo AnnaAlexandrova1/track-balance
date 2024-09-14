@@ -1,2 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
-@import "primeicons/primeicons.css"
+@import "primeicons/primeicons.css";
+
+
+html {
+    height: 100%;
+
+    body {
+        height: 100%;
+
+
+        .app-container {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fafafc;
+        }
+
+
+        @media screen and (min-device-width: 1200px) {
+            .app-container {
+                height: 100%;
+            }
+
+            .content-container {
+                min-width: 1000px;
+                max-width: 1600px;
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 35px;
+                height: 100%;
+            }
+        }
+
+        @media screen and (min-device-width: 720px) and (max-device-width: 1200px) {}
+
+        @media screen and (min-device-width: 280px) and (max-device-width: 720px) {}
+    }
+}

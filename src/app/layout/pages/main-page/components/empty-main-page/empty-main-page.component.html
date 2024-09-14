@@ -1,20 +1,20 @@
 <div class="empty-main-page-container flex flex-row">
- <div class="col-4">
+ <div class="image-container col-4 flex flex-column justify-content-center">
   <img
   src="assets/images/emptyMan.png"
   alt="start-page-man"
-  class="empty-man"
+  class="empty-man mr-auto ml-auto"
 />
  </div>
 
-  <div class="areas-container col-4">
+ <div class="create-balance-container col-4 flex flex-column justify-content-center gap-4">
+  <span class="text-center">Колесо баланса еще не заполнено</span>
+  <p-button label="Создать колесо банаса" severity="info" class="mr-auto ml-auto"/>
+</div>
+
+  <div class="areas-container col-4 pt-8 pb-8 flex flex-column justify-content-around align-content-center">
     @for (item of areas; track item.title) {
       <app-area-progress [areaParams]= "item"/>
     }
-  </div>
-
-  <div class="create-balance-container col-4 flex flex-column gap-3">
-    <span>Колесо баланса еще не заполнено</span>
-    <p-button label="Создать колесо банаса" severity="info" />
   </div>
 </div>

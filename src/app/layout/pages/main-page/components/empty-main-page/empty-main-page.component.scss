@@ -1,4 +1,9 @@
-.empty-man {
-    width: 90%;
-    background-color: white;
+.empty-main-page-container {
+    min-height: 600px;
+
+    .empty-man {
+        width: 50%;
+        height: fit-content;
+        background-color: #fafafc;
+    }
 }

@@ -1,10 +1,17 @@
-<div class="grid flex flex-row justify-content-between">
-  <p-tabMenu class="col-6" [model]="menuItems" [activeItem]="activeItem"/>
+<div class="app-container">
+  <div class="header-container grid flex flex-row justify-content-between pt-1 pb-2 pr-8 pl-8">
+    <div class="logo-container col-3">
+      <img src="/assets/images/radar.png" class="logo-img">
+      <img src="/assets/images/logo-title.png" class="logo-title-img">
+    </div>
 
-  <p-avatar class="col-1" icon="pi pi-user" styleClass="mr-2" size="large"
-    [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" shape="circle" />
-</div>
+    <p-tabMenu class="menu col-8" [model]="menuItems" [activeItem]="activeItem" />
 
-<div class="layout-content">
-  <router-outlet></router-outlet>
+    <p-avatar class="col-1 flex flex-row justify-content-end" icon="pi pi-user" styleClass="mr-2" size="large"
+      [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" shape="circle" />
+  </div>
+
+  <div class="layout-content-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

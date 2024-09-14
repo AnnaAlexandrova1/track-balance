@@ -10,12 +10,12 @@ export enum EAreas {
   }
 
 export enum EAreaColors {
-    FINANCE='#52A361',
-    CAREER='#3778F8',
-    SELF_DEVELOPMENT='#5A57CC',
-    HOBBIES_AND_RECREATION = '#F5C946',
-    RELATIONSHIPS = '#E9445A',
-    FAMILY = '#EB9C3D',
-    HEALTH = '#79D473',
-    ENVIRONMENT_AND_FRIENDS = '#78C5F4',
+    FINANCE='rgba(82, 163, 97, .5)',
+    CAREER='rgba(55, 120, 248, .5)',
+    SELF_DEVELOPMENT='rgba(90, 87, 204, .5)',
+    HOBBIES_AND_RECREATION = 'rgb(96%, 79%, 27%, .5)',
+    RELATIONSHIPS = 'rgba(233, 68, 90, .5)',
+    FAMILY = 'rgba(235, 156, 61, .5)',
+    HEALTH = 'rgb(47%, 83%, 45%, .5)',
+    ENVIRONMENT_AND_FRIENDS = 'rgb(47%, 77%, 96%, 0.5)',
 }

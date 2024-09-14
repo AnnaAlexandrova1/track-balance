@@ -25,7 +25,7 @@ export class EmptyMainPageComponent implements OnInit {
       return {
         title: EAreas[item as keyof typeof EAreas],
         color: EAreaColors[item as keyof typeof EAreas],
-        done: 1
+        done: 0
       }
     });
   }
