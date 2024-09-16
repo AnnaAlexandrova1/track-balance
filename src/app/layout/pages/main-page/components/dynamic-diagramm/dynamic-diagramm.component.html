@@ -1,0 +1,22 @@
+<div class="chart-container mt-7 flex flex-row w-full" style="width: 800px; height: 600px;">
+
+    <div class="chart-container col-6">
+        <canvas #mychart class="w-full">
+        </canvas>
+    </div>
+
+    <div class="chart-toggle-container col-6 flex flex-column ml-8">
+        @for(label of labels; track label.Name){
+            <p-toggleButton
+            class="mb-4"
+            [onLabel]="label.Name"
+            [offLabel]="label.Name"
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            onIcon="pi pi-lock"
+            offIcon="pi pi-lock-open"
+            styleClass="w-9rem"
+            ariaLabel="Do you confirm" />
+        }
+    </div>
+</div>

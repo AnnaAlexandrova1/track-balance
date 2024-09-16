@@ -1,0 +1,27 @@
+<div class="start-main-page-container flex flex-column">
+    <div class="flex flex-row">
+        <div class="image-container col-4 flex flex-column justify-content-center">
+            <img src="assets/images/fullMan.png" alt="start-page-man" class="man-img mr-auto ml-auto" />
+        </div>
+
+        <div class="create-balance-container col-4 flex flex-column justify-content-center gap-4">
+            <span class="text-center">Цели из последнего колеса баланса</span>
+
+        </div>
+
+        <div class="areas-container col-4 pt-8 pb-8 flex flex-column justify-content-around align-content-center">
+            @for (item of areas; track item.title) {
+            <app-area-progress [areaParams]="item" />
+            }
+        </div>
+    </div>
+
+    <div class="flex flex-row align-items-center col-8 mr-auto ml-auto mt-2">
+        <span class="text-center">Чтобы следить за динамикой, создай колесо более 2 раз</span>
+        <p-button label="Посмотреть историю" severity="info" class="mr-auto ml-auto"/>
+    </div>
+
+    <div>
+        <app-dynamic-diagramm />
+    </div>
+</div>
