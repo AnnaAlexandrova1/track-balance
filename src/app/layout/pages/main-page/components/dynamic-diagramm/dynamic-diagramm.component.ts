@@ -14,7 +14,7 @@ import {ToggleButtonModule} from "primeng/togglebutton";
   templateUrl: './dynamic-diagramm.component.html',
   styleUrl: './dynamic-diagramm.component.scss'
 })
-export class DynamicDiagrammComponent implements OnInit, AfterViewInit {
+export class DynamicDiagrammComponent implements AfterViewInit {
   checked: boolean = false;
   @ViewChild('mychart') myChart!: ElementRef<ChartItem>;
 
@@ -51,10 +51,6 @@ export class DynamicDiagrammComponent implements OnInit, AfterViewInit {
     type: 'line',
     data: this.data,
     options: this.options
-  }
-
-
-  ngOnInit(): void {
   }
 
   ngAfterViewInit() {
