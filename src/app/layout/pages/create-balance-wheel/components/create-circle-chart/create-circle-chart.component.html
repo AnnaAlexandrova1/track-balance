@@ -1,9 +1,15 @@
 <div class="flex flex-row col-7">
 
-    <div class="chart-container col-6">
+    <div class="chart-container col-8">
         <canvas #mychart class="w-full">
         </canvas>
     </div>
 
-</div>
+    <div class="score-container col-4 pt-4 pb-4">
+        @for(area of startAreas; track area.title){
+            <app-score-slider [startArea]="area"/>
+        }
+ 
+    </div>
 
+</div>

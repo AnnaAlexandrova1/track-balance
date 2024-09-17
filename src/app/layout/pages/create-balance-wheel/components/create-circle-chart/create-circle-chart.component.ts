@@ -10,13 +10,13 @@ import { IArea, IDataForCircle, IStartArea } from '../../../../../interfaces/are
 import {
   EAreaColors,
   EAreas,
-  EMaxAreas,
 } from '../../../../../enums/areas-and-colors';
+import { ScoreSliderComponent } from '../../../../../components/score-slider/score-slider.component';
 
 @Component({
   selector: 'app-create-circle-chart',
   standalone: true,
-  imports: [],
+  imports: [ScoreSliderComponent],
   templateUrl: './create-circle-chart.component.html',
   styleUrl: './create-circle-chart.component.scss',
 })
@@ -41,6 +41,7 @@ export class CreateCircleChartComponent implements AfterViewInit {
         title: EAreas[item as keyof typeof EAreas],
         color: EAreaColors[item as keyof typeof EAreas],
         score: 0,
+        maxScore: Object.keys(EAreas).length
       };
     });
 

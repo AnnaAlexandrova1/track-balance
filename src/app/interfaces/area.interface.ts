@@ -8,6 +8,7 @@ export interface IStartArea {
   title: string;
   color: string;
   score?: number;
+  maxScore: number;
 }
 
 export interface IDataForCircle {
