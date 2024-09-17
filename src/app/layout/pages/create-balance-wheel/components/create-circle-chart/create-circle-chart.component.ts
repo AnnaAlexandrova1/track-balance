@@ -1,69 +1,102 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartItem, ChartTypeRegistry, registerables } from "chart.js";
-import { IArea } from '../../../../../interfaces/area.interface';
+import {
+  Chart,
+  ChartConfiguration,
+  ChartItem,
+  ChartTypeRegistry,
+  registerables,
+} from 'chart.js';
+import { IArea, IDataForCircle, IStartArea } from '../../../../../interfaces/area.interface';
+import {
+  EAreaColors,
+  EAreas,
+  EMaxAreas,
+} from '../../../../../enums/areas-and-colors';
 
 @Component({
   selector: 'app-create-circle-chart',
   standalone: true,
   imports: [],
   templateUrl: './create-circle-chart.component.html',
-  styleUrl: './create-circle-chart.component.scss'
+  styleUrl: './create-circle-chart.component.scss',
 })
-export class CreateCircleChartComponent implements AfterViewInit{
+export class CreateCircleChartComponent implements AfterViewInit {
   @ViewChild('mychart') myChart!: ElementRef<ChartItem>;
-  public DATA_COUNT = 5;
-  public NUMBER_CFG = {count: this.DATA_COUNT, min: 0, max: 20};
+  public startAreas: IStartArea[] = [];
+  public labels: string[] = [];
+  public backgroundColors: string[] = [];
+  public scores: number[] = []
+  public data: IDataForCircle | {} = {};
+  public config: ChartConfiguration<keyof ChartTypeRegistry, number[], string> | {} = {};
 
-  public labels = ['Red', 'Orange', 'Yellow', 'Green', 'Blue'];
-  public  data = {
-    labels: this.labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [11, 16, 7, 14, 10],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-        ]
-      }
-    ]
-  };
+  constructor() {}
 
-  public config:ChartConfiguration<keyof ChartTypeRegistry, number[], string> = {
-    type: 'polarArea',
-    data: this.data,
-    options: {
-      responsive: true,
-      scales: {
-        r: {
-          pointLabels: {
-            display: true,
-            centerPointLabels: true,
-            font: {
-              size: 18
-            }
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          position: 'bottom',
-          display: false
+  ngOnInit(): void {
+    this.transformStartAreas();
+  }
+
+  private transformStartAreas(): void {
+    this.startAreas = Object.keys(EAreas).map((item) => {
+      return {
+        title: EAreas[item as keyof typeof EAreas],
+        color: EAreaColors[item as keyof typeof EAreas],
+        score: 0,
+      };
+    });
+
+    this.labels = Object.keys(EAreas).map((item) => {
+      return EAreas[item as keyof typeof EAreas];
+    });
+
+    this.backgroundColors = Object.keys(EAreas).map((item) => {
+      return EAreaColors[item as keyof typeof EAreas];
+    });
+
+    this.scores = Object.keys(EAreas).map(() => {
+      return 1
+    });
+
+    this.data = {
+      labels: this.labels,
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: this.scores,
+          backgroundColor: this.backgroundColors,
         },
-        // title: {
-        //   display: true,
-        //   text: 'Chart.js Polar Area Chart With Centered Point Labels'
-        // }
-      }
-    },
-  };
+      ],
+    };
 
-  public areas: IArea[] = [];
-
-  constructor() { }
+    this.config =
+    {
+      type: 'polarArea',
+      data: this.data,
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            pointLabels: {
+              display: true,
+              centerPointLabels: true,
+              font: {
+                size: 18,
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            display: false,
+          },
+          // title: {
+          //   display: true,
+          //   text: 'Chart.js Polar Area Chart With Centered Point Labels'
+          // }
+        },
+      },
+    };
+  }
 
   ngAfterViewInit() {
     if (this.myChart) {
@@ -73,6 +106,6 @@ export class CreateCircleChartComponent implements AfterViewInit{
 
   createChart(): void {
     Chart.register(...registerables);
-    new Chart(this.myChart.nativeElement, this.config)
+    new Chart(this.myChart.nativeElement, this.config as ChartConfiguration<keyof ChartTypeRegistry, number[], string>);
   }
 }

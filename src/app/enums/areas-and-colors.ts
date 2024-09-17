@@ -19,3 +19,7 @@ export enum EAreaColors {
     HEALTH = 'rgb(47%, 83%, 45%, .5)',
     ENVIRONMENT_AND_FRIENDS = 'rgb(47%, 77%, 96%, 0.5)',
 }
+
+export enum EMaxAreas {
+  MAX_AREAS = 12,
+}
