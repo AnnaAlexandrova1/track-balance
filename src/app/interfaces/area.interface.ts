@@ -4,14 +4,14 @@ export interface IArea {
   done?: number;
 }
 
-export interface IStartArea {
-  title: string;
-  color: string;
-  score?: number;
-  maxScore: number;
-}
-
 export interface IDataForCircle {
   labels: string[];
   datasets: { label: string; data: number[]; backgroundColor: string[] }[];
+}
+
+export interface ICircleArea {
+  title: string;
+  color: string;
+  score: number;
+  maxScore?: number;
 }

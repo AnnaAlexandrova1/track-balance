@@ -1,7 +1,7 @@
 <div class="slider flex flex-row">
-    <input type="text" pInputText [(ngModel)]="startArea.score" class="mb-3 col-2 mr-3"/>
+    <input type="text" pInputText [(ngModel)]="startArea.score" class="mb-3 col-2 mr-3" (input)="inputScore($event)" max="startArea.maxScore ?? 8"/>
     <div class="col-9">
-        <p-slider [(ngModel)]="startArea.score" class="w-full" [max]="startArea.maxScore" [step]="1" [style]="{'color': 'red'}"/>
+        <p-slider [(ngModel)]="startArea.score" (onChange)="setArea($event)"  class="w-full" [max]="startArea.maxScore" [step]="1"/>
         <p class="mt-2">{{ startArea.title }}</p>
     </div>
 </div>

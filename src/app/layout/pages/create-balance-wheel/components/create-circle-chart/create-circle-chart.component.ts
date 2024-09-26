@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -6,12 +6,15 @@ import {
   ChartTypeRegistry,
   registerables,
 } from 'chart.js';
-import { IArea, IDataForCircle, IStartArea } from '../../../../../interfaces/area.interface';
 import {
-  EAreaColors,
-  EAreas,
-} from '../../../../../enums/areas-and-colors';
+  IArea,
+  ICircleArea,
+  IDataForCircle,
+} from '../../../../../interfaces/area.interface';
+import { EAreaColors, EAreas } from '../../../../../enums/areas-and-colors';
 import { ScoreSliderComponent } from '../../../../../components/score-slider/score-slider.component';
+import { FillCircleService } from '../../../../../services/fill-circle.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-circle-chart',
@@ -20,16 +23,26 @@ import { ScoreSliderComponent } from '../../../../../components/score-slider/sco
   templateUrl: './create-circle-chart.component.html',
   styleUrl: './create-circle-chart.component.scss',
 })
-export class CreateCircleChartComponent implements AfterViewInit {
+export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mychart') myChart!: ElementRef<ChartItem>;
-  public startAreas: IStartArea[] = [];
+  private fillCircleServiceSubscription!: Subscription;
+  public startAreas: ICircleArea[] = [];
   public labels: string[] = [];
   public backgroundColors: string[] = [];
-  public scores: number[] = []
+  public scores: number[] = [];
   public data: IDataForCircle | {} = {};
-  public config: ChartConfiguration<keyof ChartTypeRegistry, number[], string> | {} = {};
+  public config:
+    | ChartConfiguration<keyof ChartTypeRegistry, number[], string>
+    | {} = {};
 
-  constructor() {}
+  public chart!: Chart;
+
+  constructor(public fillCircleService: FillCircleService) {
+    this.fillCircleServiceSubscription = this.fillCircleService.getAreas$().subscribe(item => {
+      this.chart.data.datasets[0].data = item.map(elem => elem.score);
+      this.chart.update();
+    })
+  }
 
   ngOnInit(): void {
     this.transformStartAreas();
@@ -41,9 +54,11 @@ export class CreateCircleChartComponent implements AfterViewInit {
         title: EAreas[item as keyof typeof EAreas],
         color: EAreaColors[item as keyof typeof EAreas],
         score: 0,
-        maxScore: Object.keys(EAreas).length
+        maxScore: Object.keys(EAreas).length,
       };
     });
+
+    this.initChart(this.startAreas)
 
     this.labels = Object.keys(EAreas).map((item) => {
       return EAreas[item as keyof typeof EAreas];
@@ -54,7 +69,7 @@ export class CreateCircleChartComponent implements AfterViewInit {
     });
 
     this.scores = Object.keys(EAreas).map(() => {
-      return 1
+      return 1;
     });
 
     this.data = {
@@ -68,8 +83,7 @@ export class CreateCircleChartComponent implements AfterViewInit {
       ],
     };
 
-    this.config =
-    {
+    this.config = {
       type: 'polarArea',
       data: this.data,
       options: {
@@ -105,8 +119,23 @@ export class CreateCircleChartComponent implements AfterViewInit {
     }
   }
 
-  createChart(): void {
+  public createChart(): void {
     Chart.register(...registerables);
-    new Chart(this.myChart.nativeElement, this.config as ChartConfiguration<keyof ChartTypeRegistry, number[], string>);
+    this.chart = new Chart(
+      this.myChart.nativeElement,
+      this.config as ChartConfiguration<
+        keyof ChartTypeRegistry,
+        number[],
+        string
+      >,
+    );
+  }
+
+  private initChart(areas: ICircleArea[]): void {
+    this.fillCircleService.initCircle(areas);
+  }
+
+  public ngOnDestroy(){
+    this.fillCircleServiceSubscription.unsubscribe();
   }
 }
