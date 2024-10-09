@@ -16,7 +16,6 @@ export class FillCircleService {
   }
 
   public setArea(area: ICircleArea): void {
-    console.log(area)
     let areas = this.$areas().map((item) => {
       if (item.title === area.title) {
         return area;
@@ -31,5 +30,9 @@ export class FillCircleService {
   public getAreas$(): Observable<ICircleArea[]> {
     const areas$ = toObservable(this.$areas);
     return areas$;
+  }
+
+  public getCircle(): ICircleArea[]{
+      return this.$areas()
   }
 }

@@ -1,0 +1,6 @@
+
+<div class="description-area-container gap-3">
+    @for(item of descriptionList; track item.title){
+        <app-description-area-item [description]="item"/>
+    }
+</div>

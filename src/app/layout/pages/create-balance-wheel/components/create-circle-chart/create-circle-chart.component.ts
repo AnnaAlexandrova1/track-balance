@@ -15,11 +15,12 @@ import { EAreaColors, EAreas } from '../../../../../enums/areas-and-colors';
 import { ScoreSliderComponent } from '../../../../../components/score-slider/score-slider.component';
 import { FillCircleService } from '../../../../../services/fill-circle.service';
 import { Subscription } from 'rxjs';
+import { DescriptionAreaComponent } from '../description-area/description-area.component';
 
 @Component({
   selector: 'app-create-circle-chart',
   standalone: true,
-  imports: [ScoreSliderComponent],
+  imports: [ScoreSliderComponent, DescriptionAreaComponent],
   templateUrl: './create-circle-chart.component.html',
   styleUrl: './create-circle-chart.component.scss',
 })

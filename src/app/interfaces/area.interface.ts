@@ -14,4 +14,18 @@ export interface ICircleArea {
   color: string;
   score: number;
   maxScore?: number;
+  goals?: string;
+  achievements?: string;
+}
+
+export interface ICircle {
+    areas: ICircleArea[];
+    description: string;
+}
+
+export interface IDescriptionItem {
+  title: string;
+  color: string;
+  goals: string;
+  achievements: string;
 }

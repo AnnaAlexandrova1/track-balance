@@ -17,7 +17,7 @@ export enum EAreaColors {
     RELATIONSHIPS = 'rgba(233, 68, 90, .5)',
     FAMILY = 'rgba(235, 156, 61, .5)',
     HEALTH = 'rgb(47%, 83%, 45%, .5)',
-    ENVIRONMENT_AND_FRIENDS = 'rgb(47%, 77%, 96%, 0.5)',
+    ENVIRONMENT_AND_FRIENDS = 'rgba(47%, 77%, 96%, .5)',
 }
 
 export enum EMaxAreas {

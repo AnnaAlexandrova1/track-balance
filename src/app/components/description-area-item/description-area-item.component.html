@@ -1,0 +1,19 @@
+<p-card [header]="description.title" class="text-center mb-4" [style]="{'background-color': description.color,}">
+    <div class="flex flex-row justify-content-between">
+        <div class="flex flex-column col-6">
+            <span class="font-italic font-semibold mb-2">мои достижения:</span>
+            <form [formGroup]="formGroup">
+                <textarea rows="5" pInputTextarea formControlName="text">
+                </textarea>
+            </form>
+        </div>
+
+        <div class="flex flex-column col-6">
+            <span class="font-italic font-semibold mb-2">мои цели:</span>
+            <form [formGroup]="formGroup">
+                <textarea rows="5"  pInputTextarea formControlName="text">
+                </textarea>
+            </form>
+        </div>
+    </div>
+</p-card>
