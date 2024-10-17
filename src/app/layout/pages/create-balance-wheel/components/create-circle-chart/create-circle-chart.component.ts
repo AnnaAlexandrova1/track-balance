@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -16,16 +16,18 @@ import { ScoreSliderComponent } from '../../../../../components/score-slider/sco
 import { FillCircleService } from '../../../../../services/fill-circle.service';
 import { Subscription } from 'rxjs';
 import { DescriptionAreaComponent } from '../description-area/description-area.component';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-circle-chart',
   standalone: true,
-  imports: [ScoreSliderComponent, DescriptionAreaComponent],
+  imports: [ScoreSliderComponent, DescriptionAreaComponent, ReactiveFormsModule],
   templateUrl: './create-circle-chart.component.html',
   styleUrl: './create-circle-chart.component.scss',
 })
 export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mychart') myChart!: ElementRef<ChartItem>;
+  @Input()circleForm!: FormGroup;
   private fillCircleServiceSubscription!: Subscription;
   public startAreas: ICircleArea[] = [];
   public labels: string[] = [];
@@ -38,7 +40,7 @@ export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDest
 
   public chart!: Chart;
 
-  constructor(public fillCircleService: FillCircleService) {
+  constructor(public fillCircleService: FillCircleService, private fb: FormBuilder,) {
     this.fillCircleServiceSubscription = this.fillCircleService.getAreas$().subscribe(item => {
       this.chart.data.datasets[0].data = item.map(elem => elem.score);
       this.chart.update();
@@ -47,6 +49,8 @@ export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDest
 
   ngOnInit(): void {
     this.transformStartAreas();
+
+    console.log(this.circleForm)
   }
 
   private transformStartAreas(): void {

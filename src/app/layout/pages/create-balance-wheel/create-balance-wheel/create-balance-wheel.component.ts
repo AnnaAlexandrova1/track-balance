@@ -31,12 +31,12 @@ export class CreateBalanceWheelComponent implements OnInit {
 
   public ngOnInit() {
     this.circleForm = new FormGroup ({
-         scores: this.fb.group(
-           this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({ ...list, [item.title]: ['']}), {})),
-         areaDescriptions: this.fb.group(
-          this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({...list, [item.title ]: new FormGroup({ [item.title ]: this.fb.group({ goals: [''], achievements: ['']})})}), {})
-         )
-    })
+      scores: this.fb.group(
+        this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({ ...list, [item.title]: ['']}), {})),
+      areaDescriptions: this.fb.group(
+       this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({...list, [item.title ]: new FormGroup({ [item.title ]: this.fb.group({ goals: [''], achievements: ['']})})}), {})
+      )
+ })
   }
 
   public createCircle() {
