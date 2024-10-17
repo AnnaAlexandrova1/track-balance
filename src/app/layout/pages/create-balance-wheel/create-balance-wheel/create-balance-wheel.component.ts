@@ -5,6 +5,8 @@ import { CreateCircleChartComponent } from '../components/create-circle-chart/cr
 import { FillCircleService } from '../../../../services/fill-circle.service';
 import { CreateCircleApiService } from '../../../../services/create-circle.api.service';
 import { ICircle } from '../../../../interfaces/area.interface';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-create-balance-wheel',
@@ -13,17 +15,29 @@ import { ICircle } from '../../../../interfaces/area.interface';
     SplitButtonModule,
     ChangeAreasComponent,
     CreateCircleChartComponent,
+    ReactiveFormsModule,
   ],
   templateUrl: './create-balance-wheel.component.html',
   styleUrls: ['./create-balance-wheel.component.scss'],
 })
 export class CreateBalanceWheelComponent implements OnInit {
+  public circleForm!: FormGroup;
+
   constructor(
     private fillCircleService: FillCircleService,
     private createCircleApiService: CreateCircleApiService,
+    private fb: FormBuilder,
   ) {}
 
-  ngOnInit() {}
+  public ngOnInit() {
+    this.circleForm = new FormGroup ({
+         scores: this.fb.group(
+           this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({ ...list, [item.title]: ['']}), {})),
+         areaDescriptions: this.fb.group(
+          this.fillCircleService.getDescriptionAreas().reduce((list, item) => ({...list, [item.title ]: new FormGroup({ [item.title ]: this.fb.group({ goals: [''], achievements: ['']})})}), {})
+         )
+    })
+  }
 
   public createCircle() {
     let item: ICircle = {

@@ -1,14 +1,16 @@
 <div class="content-container">
   <app-change-areas />
 
-  <div class="mt-5">
-   <app-create-circle-chart/>
-  </div>
-
-  <div class="ml-auto col-4 flex-row justify-content-center">
-    <p-button label="Отменить" severity="warning" class="mr-3"/>
-    <p-button label="Сохранить" severity="success" (click)="createCircle()"/>
-  </div>
+  <form [formGroup]="circleForm">
+    <div class="mt-5">
+      <app-create-circle-chart/>
+     </div>
+   
+     <div class="ml-auto col-4 flex-row justify-content-center">
+       <p-button label="Отменить" severity="warning" class="mr-3"/>
+       <p-button label="Сохранить" severity="success" (click)="createCircle()"/>
+     </div>
+  </form>
 </div>
 
 

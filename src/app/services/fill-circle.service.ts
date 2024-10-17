@@ -1,7 +1,9 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { ICircleArea } from '../interfaces/area.interface';
+import { ICircleArea, IDescriptionItem } from '../interfaces/area.interface';
 import { Observable } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { EAreaColors, EAreas } from '../enums/areas-and-colors';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -35,4 +37,17 @@ export class FillCircleService {
   public getCircle(): ICircleArea[]{
       return this.$areas()
   }
+
+  public getDescriptionAreas(): IDescriptionItem[] {
+   return Object.keys(EAreas).map((item) => {
+      return {
+        title: EAreas[item as keyof typeof EAreas],
+        color: EAreaColors[item as keyof typeof EAreas],
+        goals: '',
+        achievements: '',
+        score: new FormControl(),
+      };
+    });
+  }
+
 }

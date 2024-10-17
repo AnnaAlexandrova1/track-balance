@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DescriptionAreaItemComponent } from '../../../../../components/description-area-item/description-area-item.component';
 import { EAreaColors, EAreas } from '../../../../../enums/areas-and-colors';
 import { IDescriptionItem } from '../../../../../interfaces/area.interface';
+import { FillCircleService } from '../../../../../services/fill-circle.service';
 
 @Component({
   selector: 'app-description-area',
@@ -13,14 +14,10 @@ import { IDescriptionItem } from '../../../../../interfaces/area.interface';
 export class DescriptionAreaComponent implements OnInit {
   public descriptionList: IDescriptionItem[] = [];
 
+  constructor(public fillCircleService: FillCircleService){
+    }
+
   public ngOnInit() {
-    this.descriptionList = Object.keys(EAreas).map((item) => {
-      return {
-        title: EAreas[item as keyof typeof EAreas],
-        color: EAreaColors[item as keyof typeof EAreas],
-        goals: '',
-        achievements: '',
-      };
-    });
+    this.descriptionList = this.fillCircleService.getDescriptionAreas();
   }
 }
