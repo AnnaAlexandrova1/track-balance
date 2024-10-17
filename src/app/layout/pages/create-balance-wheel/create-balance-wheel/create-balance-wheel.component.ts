@@ -7,6 +7,7 @@ import { CreateCircleApiService } from '../../../../services/create-circle.api.s
 import { ICircle } from '../../../../interfaces/area.interface';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { group } from '@angular/animations';
+import { ICircleForm } from '../../../../interfaces/form-group-circle.interface';
 
 @Component({
   selector: 'app-create-balance-wheel',
@@ -21,7 +22,7 @@ import { group } from '@angular/animations';
   styleUrls: ['./create-balance-wheel.component.scss'],
 })
 export class CreateBalanceWheelComponent implements OnInit {
-  public circleForm!: FormGroup;
+  public circleForm!: FormGroup<ICircleForm>;
 
   constructor(
     private fillCircleService: FillCircleService,

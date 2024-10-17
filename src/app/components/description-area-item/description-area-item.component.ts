@@ -13,11 +13,8 @@ import { IDescriptionItem } from '../../interfaces/area.interface';
 })
 export class DescriptionAreaItemComponent implements OnInit{
   @Input() description!: IDescriptionItem;
-  formGroup!: FormGroup;
+ 
 
   ngOnInit() {
-    this.formGroup = new FormGroup({
-        text: new FormControl<string | null>(this.description.achievements)
-    });
 }
 }

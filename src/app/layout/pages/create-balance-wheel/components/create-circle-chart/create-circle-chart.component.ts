@@ -16,7 +16,8 @@ import { ScoreSliderComponent } from '../../../../../components/score-slider/sco
 import { FillCircleService } from '../../../../../services/fill-circle.service';
 import { Subscription } from 'rxjs';
 import { DescriptionAreaComponent } from '../description-area/description-area.component';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ICircleForm } from '../../../../../interfaces/form-group-circle.interface';
 
 @Component({
   selector: 'app-create-circle-chart',
@@ -27,7 +28,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 })
 export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mychart') myChart!: ElementRef<ChartItem>;
-  @Input()circleForm!: FormGroup;
+  @Input() circleForm!: FormGroup;
   private fillCircleServiceSubscription!: Subscription;
   public startAreas: ICircleArea[] = [];
   public labels: string[] = [];
@@ -50,7 +51,11 @@ export class CreateCircleChartComponent implements OnInit, AfterViewInit, OnDest
   ngOnInit(): void {
     this.transformStartAreas();
 
-    console.log(this.circleForm)
+    console.log(this.circleForm.get('areaDescriptions'))
+  }
+
+  public getAreaDescriptions(): FormGroup {
+    return this.circleForm.get('areaDescriptions') as FormGroup
   }
 
   private transformStartAreas(): void {

@@ -28,4 +28,5 @@ export interface IDescriptionItem {
   color: string;
   goals: string;
   achievements: string;
+  controls?: any
 }

@@ -1,5 +1,5 @@
 
-<div class="description-area-container gap-3">
+<div class="description-area-container gap-3" [formGroup]="areaDescriptionGrpup">
     @for(item of descriptionList; track item.title){
         <app-description-area-item [description]="item"/>
     }
